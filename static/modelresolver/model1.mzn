@@ -85,7 +85,7 @@ constraint forall(m in MOVIE where movie_day[m] == 4) (
     
 solve satisfy;
 output
-["{name:"++show(p)
+["{Name:"++show(p)
 ++", Film:"++show(movie_choice[p])
 ++", Day:"++show(movie_day[movie_choice[p]])
 ++", Time:"++show(movie_hour[movie_choice[p]])++":"

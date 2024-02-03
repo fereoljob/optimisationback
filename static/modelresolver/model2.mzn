@@ -75,12 +75,11 @@ solve satisfy;
 output
 
   
- [show(c) 
-++ " \t " ++ show(tailleEcran[c] /10) 
-++ " \t" ++ show(puissanceProcesseur[c]/10)++"MHz"
-++ " \t" ++ show(capaciteDisque[c]) ++ "Go"
-++ " \t " ++ show(prix[c]) ++"$"
-
-++ "\n"
+ ["{Ecran:" 
+++ show(tailleEcran[c] /10) 
+++ ", Processeur:"++ show(puissanceProcesseur[c]/10)++"MHz"
+++ ", Capacite:" ++ show(capaciteDisque[c]) ++ "Go"
+++ ", Prix:" ++ show(prix[c]) ++"$"
+++ "|"
  | c in COMPUTER];
  
