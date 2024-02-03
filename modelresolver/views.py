@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from minizinc import Instance, Model, Solver
 import os
-from .utils import checkProblem, compareSol, checkIfContains
+from .utils import checkProblem
 
 def testPartialSolution(request,problem_id,partialsol):
     return HttpResponse("Not yet implemented!")
