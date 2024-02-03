@@ -8,7 +8,7 @@ def checkUserSolution(solution,usersolution):
 
 def checkUserPartial(solution,partialSolution):
     tab = partialSolution.split("|")
-    for sol in range(0,solution._len__()):
+    for sol in range(0,solution.__len__()):
         if compareSol(solution[sol],tab,len(tab)):
             return True
     return False
