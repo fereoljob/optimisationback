@@ -99,3 +99,15 @@ constraint forall(w1 in WOMAN where whine_choice[w1] == Australian, w2 in WOMAN 
   );
   
 constraint forall(w1 in WOMAN where shirt_color[w1] == Yellow, w2 in WOMAN where age[w2] == 35)(w1+1 == w2 );
+
+solve satisfy;
+
+output
+["{\"Name\":\""++show(n)
+++"\",\"Shirt\":\""++show(shirt_color[n])
+++"\",\"Surname\":\""++show(surname[n])
+++"\",\"Pasta\":\""++show(pasta_choice[n])
+++"\",\"Whine\":\""++show(whine_choice[n])
+++"\",\"Age\":\""++show(age[n])++"\"}"
+++ "|"
+ | n in name];

@@ -79,7 +79,7 @@ output
 ++ show(tailleEcran[c] /10) 
 ++ ",Processeur:"++ show(puissanceProcesseur[c]/10)++"MHz"
 ++ ",Capacite:" ++ show(capaciteDisque[c]) ++ "Go"
-++ ",Prix:" ++ show(prix[c]) ++"$"
+++ ",Prix:" ++ show(prix[c]) ++"$\"}"
 ++ "|"
  | c in COMPUTER];
  

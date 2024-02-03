@@ -91,6 +91,6 @@ output
 ++"\",\"Time\":\""++show(movie_hour[movie_choice[p]])++":"
 ++show(movie_minutes[movie_choice[p]])++" pm\"}"
 ++ "|"
- | p in PERSON]
+ | p in PERSON];
    
 
