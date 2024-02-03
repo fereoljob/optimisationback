@@ -13,6 +13,7 @@ def checkCompleteSolution(solution,completeSolution):
     return False
 
 def checkPartialSolution(solution,partialSolution):
+    partialSolution = partialSolution.strip("|")
     tab = partialSolution.split("|")
     for sol in range(0,solution.__len__()):
         if compareSolPartial(solution[sol],tab,len(tab)):
