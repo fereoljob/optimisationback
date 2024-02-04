@@ -55,7 +55,7 @@ def checkIfContainsPartial(sol1,ligne):
     for i in range(0,len(solverSolTab)):
         dict1 = json.loads(solverSolTab[i])
         dict2 = json.loads(ligne)
-        if customComparePartial(dict1,dict2,0):
+        if customComparePartial(dict1,dict2):
             return True
     return False
 
