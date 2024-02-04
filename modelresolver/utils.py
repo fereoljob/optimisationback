@@ -59,10 +59,9 @@ def checkIfContainsPartial(sol1,ligne):
             return True
     return False
 
-def customComparePartial(obj1,obj2,depth):
-    if depth==len(obj2):
-        return True
-    if obj1.get(depth)==obj2.get(depth):
-        return customComparePartial(obj1,obj2,depth+1)
-    else:
-        return False
+
+def customComparePartial(obj1,obj2):
+    for propertyName in obj2:
+        if obj1.get(propertyName)!=obj2.get(propertyName):
+            return False
+    return True
