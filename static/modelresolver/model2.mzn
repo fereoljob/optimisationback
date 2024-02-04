@@ -78,8 +78,8 @@ output
  ["{\"Monitor\":\"" 
 ++ show(tailleEcran[c] /10) 
 ++ "\",\"Processor\":\""++ show(puissanceProcesseur[c]/10)++" MHz"
-++ "\",\"HardDisk\":\""++ show(capaciteDisque[c]) ++ " Go"
-++ "\",\"Price\":\""++ show(prix[c]) ++" $\"}"
+++ "\",\"HardDisk\":\""++ show(capaciteDisque[c]) ++ " Gb"
+++ "\",\"Price\":\""++ "$ "++ show(prix[c]) ++"\"}"
 ++ "|"
  | c in COMPUTER];
  
