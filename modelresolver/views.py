@@ -25,14 +25,14 @@ def addVariable(request,variable):
     variable = variable.split("|")
     MyModel.userVariables = []
     for v in range(0,len(variable)):
-        MyModel.userVariables[v]=variable[v]
+        MyModel.userVariables.append(variable[v])
     return HttpResponse(True)
 
 def addConstraint(request,constraints):
     constraints = constraints.split("|")
     MyModel.constraints = []
     for c in len(constraints):
-        MyModel.userConstraints[v]=constraints[v]
+        MyModel.userConstraints[v].append(constraints[c])
     userModel = os.path.join('static','modelresolver','userModel.mzn')
     if os.path.exists(userModel):
         os.remove(userModel)
