@@ -24,7 +24,7 @@ def resolveProbleme(request,problem_id,user_solution):
 def addVariable(request,variable):
     variable = variable.split("|")
     MyModel.userVariables = []
-    for v in len(variable):
+    for v in range(0,len(variable)):
         MyModel.userVariables[v]=variable[v]
     return HttpResponse(True)
 
