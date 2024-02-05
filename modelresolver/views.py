@@ -39,17 +39,17 @@ def addConstraint(request,constraints):
     f = open(userModel,'at')
     f.write("include \"globals.mzn\";")
     for value in MyModel.baseVariables:
-        inser = value," \n"
-        f.write(inser)
+        value+="; \n"
+        f.write(value)
     for value in MyModel.userVariables:
-        inser = value," \n"
-        f.write(inser)
+        value+="; \n"
+        f.write(value)
     for value in MyModel.baseConstraints:
-        inser = value," \n"
-        f.write(inser)
+        value+="; \n"
+        f.write(value)
     for value in MyModel.userVariables:
-        inser = value," \n"
-        f.write(inser)
+        value+="; \n"
+        f.write(value)
     f.write("solve satisfy")
     model = Model(userModel)
     solver = Solver.lookup("gecode")
