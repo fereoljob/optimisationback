@@ -55,12 +55,12 @@ def addConstraint(request,constraints):
     solver = Solver.lookup("gecode")
     instance = Instance(solver,model)
     result  = instance.solve(all_solutions=True)
-    if result.has_solution():
+    if result.status.has_solution():
         sol = parseSolutionForFront(result)
     else:
         sol = "No solutions"
     response  = {
-        "hasSolution" : result.has_solution(),
+        "hasSolution" : result.status.has_solution(),
         "solutions" : sol
         }
     return HttpResponse()
