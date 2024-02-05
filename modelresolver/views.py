@@ -1,10 +1,14 @@
 from django.http import HttpResponse
 from minizinc import Instance, Model, Solver
 import os
-from .utils import checkCompleteSolution,checkPartialSolution, MyModel,parseSolutionForFront
+from .utils import checkCompleteSolution,checkPartialSolution,parseSolutionForFront
 import json
 
 
+baseVariables = ["enum TRANSPORT ={Train, Boat, Plane}","enum PAYS = {Belgique, Italie, Angleterre}","array[PERSON] of var TRANSPORT : voyage_par","array[PERSON] of var PAYS : va_en"]
+baseConstraints = ["constraint all_different(voyage_par)","constraint all_different(va_en)"]
+userVariables = []
+userConstraints = []
 
 def testPartialSolution(request,problem_id,partialsol):
     model_path = os.path.join('static','modelresolver','model'+str(problem_id)+'.mzn')
@@ -24,34 +28,50 @@ def resolveProbleme(request,problem_id,user_solution):
 
 def addVariable(request,variable):
     variable = variable.split("|")
-    MyModel.userVariables = []
+    global userVariables 
+    userVariables = []
+    tmp = []
     for v in range(0,len(variable)):
-        MyModel.userVariables.append(variable[v])
+        tmp.append(variable[v])
+    userVariables = tmp
     return HttpResponse(True)
 
 def addConstraint(request,constraints):
     constraints = constraints.split("|")
-    MyModel.constraints = []
+    global userconstraints
+    userconstraints = []
+    tmp = []
     for c in range(0,len(constraints)):
-        MyModel.userConstraints.append(constraints[c])
+        tmp.append(constraints[c])
+    userConstraints = tmp
     userModel = os.path.join('static','modelresolver','userModel.mzn')
     if os.path.exists(userModel):
         os.remove(userModel)
     f = open(userModel,'at')
-    f.write("include \"globals.mzn\";")
-    for value in MyModel.baseVariables:
+    f.write("include \"globals.mzn\"; \n")
+    for value in userVariables:
         value+="; \n"
         f.write(value)
-    for value in MyModel.userVariables:
+    for value in baseVariables:
         value+="; \n"
         f.write(value)
-    for value in MyModel.baseConstraints:
+    for value in baseConstraints:
         value+="; \n"
         f.write(value)
-    for value in MyModel.userVariables:
+    for value in userConstraints:
         value+="; \n"
         f.write(value)
-    f.write("solve satisfy")
+    f.write("solve satisfy; \n")
+    sortie = """
+output
+["{Name:"++show(p)
+++",Transport:"++show(voyage_par[p])
+++",Pays:"++show(va_en[p])++"}"
+++ "|"
+| p in PERSON];
+    """
+    f.write(sortie)
+    f.close()
     model = Model(userModel)
     solver = Solver.lookup("gecode")
     instance = Instance(solver,model)
