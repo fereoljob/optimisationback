@@ -64,8 +64,9 @@ def addConstraint(request,constraints):
         "hasSolution" : result.status.has_solution(),
         "solutions" : sol
         }
-    print(json.dump(response))
-    return HttpResponse(json.dump(response))
+    response = json.dumps(response,indent=4)
+    print(response)
+    return HttpResponse(response)
 
 
 
