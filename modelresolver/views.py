@@ -2,6 +2,7 @@ from django.http import HttpResponse
 from minizinc import Instance, Model, Solver
 import os
 from .utils import checkCompleteSolution,checkPartialSolution, MyModel,parseSolutionForFront
+import json
 
 
 
@@ -63,7 +64,8 @@ def addConstraint(request,constraints):
         "hasSolution" : result.status.has_solution(),
         "solutions" : sol
         }
-    return HttpResponse(response)
+    print(json.dump(response))
+    return HttpResponse(json.dump(response))
 
 
 
