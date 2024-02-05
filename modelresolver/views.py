@@ -31,7 +31,7 @@ def addVariable(request,variable):
 def addConstraint(request,constraints):
     constraints = constraints.split("|")
     MyModel.constraints = []
-    for c in len(constraints):
+    for c in range(0,len(constraints)):
         MyModel.userConstraints[v].append(constraints[c])
     userModel = os.path.join('static','modelresolver','userModel.mzn')
     if os.path.exists(userModel):
