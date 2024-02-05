@@ -74,8 +74,10 @@ class MyModel:
 def parseSolutionForFront(resultat):
     chaine = "Solution(s) ["
     for res in range(0,len(resultat)):
-        chaine+= "{",str(resultat[res]),"}"
-    chaine+="]"
+        chaine+= "{"
+        chaine+=str(resultat[res])
+        chaine+="}"
+        chaine+="]"
     return chaine
 
 
