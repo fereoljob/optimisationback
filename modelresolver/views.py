@@ -63,7 +63,7 @@ def addConstraint(request,constraints):
         "hasSolution" : result.status.has_solution(),
         "solutions" : sol
         }
-    return HttpResponse()
+    return HttpResponse(response)
 
 
 
