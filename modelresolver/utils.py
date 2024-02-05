@@ -65,3 +65,20 @@ def customComparePartial(obj1,obj2):
         if obj1.get(propertyName)!=obj2.get(propertyName):
             return False
     return True
+
+class MyModel:
+    baseVariables = ["enum TRANSPORT ={Train, Boat, Plane}","enum PAYS = {Belgique, Italie, Angleterre}","array[PERSON] of var TRANSPORT : voyage_par","array[PERSON] of var PAYS : va_en"]
+    baseConstraints = ["constraint all_different(voyage_par)","constraint all_different(va_en)"]
+    userVariables = []
+    userConstraints = []
+def parseSolutionForFront(resultat):
+    chaine = "Solution(s) ["
+    for res in range(0,len(resultat)):
+        chaine+= "{",str(resultat[res]),"}"
+    chaine+="]"
+    return chaine
+
+
+
+    
+
